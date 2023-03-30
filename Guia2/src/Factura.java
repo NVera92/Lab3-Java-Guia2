@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
@@ -5,14 +6,16 @@ public class Factura {
 
     private UUID id;
     private double mount;
+    private double mountDiscount;
     private Date shopDate;
     private UUID clientId;
 
     private Venta[] products;
 
-    public Factura(double mount,UUID clientId,Venta[] arreglo){
+    public Factura(Cliente client,Venta[] arreglo){
         this.id = UUID.randomUUID();
-        this.mount = mount;
+        this.mount = Venta.totalCarrito(arreglo);
+        executeDiscount(client.getDiscount());
         this.shopDate = new Date();
         this.clientId = clientId;
         for (Venta v : arreglo){
@@ -54,7 +57,7 @@ public class Factura {
 
     public void executeDiscount(double disconunt){
         double d = (disconunt/100);
-        this.mount = this.mount - (this.mount * d);
+        this.mountDiscount = this.mount - (this.mount * d);
     }
 
     @Override
@@ -62,11 +65,10 @@ public class Factura {
         return "Factura{" +
                 "id=" + id +
                 ", mount=" + mount +
+                ", mountDiscount=" + mountDiscount +
                 ", shopDate=" + shopDate +
                 ", clientId=" + clientId +
+                ", products=" + Arrays.toString(products) +
                 '}';
     }
-
-
-
 }

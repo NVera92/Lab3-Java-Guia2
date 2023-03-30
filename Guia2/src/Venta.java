@@ -56,4 +56,17 @@ public class Venta {
                 ", precio=" + precio +
                 '}';
     }
+
+    public static double totalCarrito(Venta[] arreglo){
+        double aux;
+        double acum = 0.0;
+
+        for(Venta v: arreglo){
+            aux = v.getPrecio();
+            acum = acum + aux;
+        }
+
+        return acum;
+    }
+
 }

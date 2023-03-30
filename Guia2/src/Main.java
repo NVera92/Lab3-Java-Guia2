@@ -47,11 +47,11 @@ forma parte de la venta. El mismo contiene un id, un nombre, descripción y
 precio unitario. Considere las modificaciones necesarias en el tipo Factura
 para que el mismo pueda almacenar múltiples Ítems de venta y a su vez
 calcular los montos totales con y sin el descuento aplicado.
-         */
+
 
     Cliente customer = new Cliente("Facundo","Cuadrado","facundo@google.com",5.8);
 
-        System.out.println(customer.toString());
+        //System.out.println(customer.toString());
 
 
 
@@ -63,18 +63,44 @@ calcular los montos totales con y sin el descuento aplicado.
 
 
 
-        Venta [] a = new Venta[3];
+        Venta [] arreglo = new Venta[2];
 
-        a[0] = new Venta(1,"Gallo","Arroz",150.3);
-        a[1] = new Venta(2,"Don Vicente","Fideos",460);
+        arreglo[0] = new Venta(1,"Gallo","Arroz",150.3);
+        arreglo[1] = new Venta(2,"Don Vicente","Fideos",460);
 
-        Factura fac = new Factura()
+
+        Factura fac = new Factura(customer,arreglo);
+
+        System.out.println(fac.toString());
+
+
+
+         */
+
+        String [] movimientos = new String[9];
+
+        ClienteBanco customerBank = new ClienteBanco("Facundo Cuadrado","M");
+        System.out.println(customerBank.toString());
+
+        CuentaBanco bapro = new CuentaBanco(customerBank.getId(),10000.0, customerBank.getNombre());
+        bapro.deposit(5000.5);
+        bapro.extract(26000.0);
+
+        System.out.println(bapro.toString());
+
+
+
+
+
+
+
 
 
 
 
 
     }
+
 
 
 }
